@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task List</title>
+    <link rel="stylesheet" href="app.js" />
+  </head>
+  <body>
+    <div class="main">
+      <div class="input">
+        <form action="#">
+          <h2>Task List</h2>
+          <input
+            type="text"
+            name="task"
+            id="task"
+            placeholder="New Task..."
+            value=""
+          />
+          <input type="submit" name="submit" id="add" value="Add Task" />
+        </form>
+      </div>
+      <div class="result">
+        <h2>Tasks</h2>
+        <div class="tasks-list">
+          <ul id="tasks"></ul>
+        </div>
+        <form action="#">
+          <input type="submit" name="clear" id="clear" value="Clear Tasks" />
+        </form>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
