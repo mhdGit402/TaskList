@@ -4,6 +4,23 @@ let tasks = document.querySelector("#tasks");
 let task = document.querySelector("#task");
 let allTask = [];
 
+// Show-Tasks
+// get tasks from local storage and append to body on startup with iife
+(() => {
+  let localStorageTasks = JSON.parse(localStorage.getItem("task"));
+  localStorageTasks.forEach((task, index) => {
+    let showTask = document.createElement("li");
+    showTask.setAttribute("id", `task${index + 1}`);
+    showTask.innerHTML = `<span>${task}</span>
+                        <a href="#" class="delete" id="${
+                          index + 1
+                        }" onClick="">Delete</a>
+                        `;
+    tasks.append(showTask);
+    allTask.push(task);
+  });
+})();
+
 // Add-Task Event
 // create element li with task data => Done
 // store task in local storage => Done
@@ -18,7 +35,7 @@ addTask.addEventListener("click", (e) => {
   tasks.append(newTask);
 
   allTask.push(task.value);
-  localStorage.setItem("task", allTask);
+  localStorage.setItem("task", JSON.stringify(allTask));
   task.value = "";
 });
 
@@ -37,7 +54,7 @@ document.body.addEventListener("click", (e) => {
         allTask.splice(index, 1);
       }
     });
-    localStorage.setItem("task", allTask);
+    localStorage.setItem("task", JSON.stringify(allTask));
     e.target.parentElement.remove();
   }
 });
@@ -51,6 +68,3 @@ clearTask.addEventListener("click", (e) => {
   allTask = [];
   localStorage.removeItem("task");
 });
-
-// Show-Tasks
-// get tasks from local storage and append to body on startup
